@@ -74,10 +74,12 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_3180A90BB41B4BD78253BDC293E6423E }}
 
       - name: 'Deploy to Azure Functions'
-        uses: Azure/functions-action@v2
+        uses: Azure/functions-action@v1
         id: deploy-to-function
         with:
           app-name: 'FlexCtest'
           slot-name: 'Production'
-          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH
+          scm-do-build-during-deployment: true          
+          enable-oryx-build: true }}
           
