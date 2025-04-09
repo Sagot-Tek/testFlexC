@@ -1,6 +1,5 @@
 import azure.functions as func
 import logging
-import pandas as pd
 from io import StringIO
 from utils import parse_csv
 
