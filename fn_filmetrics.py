@@ -1,5 +1,6 @@
 import azure.functions as func
 import logging
+import pandas as pd
 from io import StringIO
 from utils import parse_csv
 
@@ -18,7 +19,7 @@ def filmetrics(req: func.HttpRequest) -> func.HttpResponse:
             contents = input_file.stream.read()
             logging.info(f"Received file: {filename}")
 
-            df = parse_csv(contents, skip_rows=8)
+            df = pd.parse_csv(contents, skip_rows=8)
             selected_columns = df[[col for col in df.columns if 'L1 d' in col  or 'L1 n' in col]]
 
             output = StringIO()
